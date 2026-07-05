@@ -1,0 +1,229 @@
+{
+  "common": {
+    "home": "خانه",
+    "products": "محصولات",
+    "cart": "سبد خرید",
+    "checkout": "تسویه حساب",
+    "account": "حساب کاربری",
+    "blog": "وبلاگ",
+    "search": "جستجو",
+    "compare": "مقایسه",
+    "wishlist": "علاقه‌مندی‌ها",
+    "contact": "تماس با ما",
+    "login": "ورود",
+    "register": "ثبت‌نام",
+    "logout": "خروج",
+    "viewAll": "مشاهده همه",
+    "addToCart": "افزودن به سبد",
+    "buyNow": "خرید فوری",
+    "outOfStock": "ناموجود",
+    "inStock": "موجود",
+    "loading": "در حال بارگذاری...",
+    "error": "خطایی رخ داد",
+    "retry": "تلاش مجدد",
+    "save": "ذخیره",
+    "cancel": "انصراف",
+    "delete": "حذف",
+    "edit": "ویرایش",
+    "back": "بازگشت",
+    "next": "بعدی",
+    "previous": "قبلی",
+    "submit": "ارسال",
+    "searchPlaceholder": "جستجوی محصولات...",
+    "noResults": "نتیجه‌ای یافت نشد",
+    "currency": "تومان"
+  },
+  "home": {
+    "hero": {
+      "title": "گوشی‌های پریمیوم، تجربه‌ای بی‌نظیر",
+      "subtitle": "جدیدترین گوشی‌های هوشمند از برترین برندها با بهترین قیمت",
+      "cta": "خرید کنید"
+    },
+    "featured": "محصولات ویژه",
+    "latest": "جدیدترین‌ها",
+    "popular": "محبوب‌ترین‌ها",
+    "brands": "خرید بر اساس برند",
+    "offers": "پیشنهادات ویژه",
+    "categories": "دسته‌بندی‌ها",
+    "reviews": "نظرات مشتریان",
+    "blog": "از وبلاگ ما",
+    "newsletter": {
+      "title": "به‌روز بمانید",
+      "subtitle": "برای دریافت پیشنهادات ویژه و اخبار عضو شوید",
+      "placeholder": "ایمیل خود را وارد کنید",
+      "button": "عضویت"
+    },
+    "faq": "سوالات متداول",
+    "stats": {
+      "products": "محصول",
+      "customers": "مشتری راضی",
+      "brands": "برند",
+      "orders": "سفارش تحویل شده"
+    },
+    "advantages": "چرا فونی‌شاپ؟",
+    "appBanner": {
+      "title": "اپلیکیشن ما را دانلود کنید",
+      "subtitle": "هر جا که هستید خرید کنید"
+    },
+    "instagram": "ما را در اینستاگرام دنبال کنید",
+    "partners": "شرکای ما"
+  },
+  "products": {
+    "title": "همه محصولات",
+    "filters": "فیلترها",
+    "sort": "مرتب‌سازی",
+    "sortOptions": {
+      "newest": "جدیدترین",
+      "priceAsc": "قیمت: کم به زیاد",
+      "priceDesc": "قیمت: زیاد به کم",
+      "popular": "محبوب‌ترین",
+      "rating": "بیشترین امتیاز"
+    },
+    "gridView": "شبکه‌ای",
+    "listView": "لیستی",
+    "showing": "نمایش {{count}} محصول",
+    "noProducts": "محصولی یافت نشد"
+  },
+  "product": {
+    "description": "توضیحات",
+    "specifications": "مشخصات فنی",
+    "reviews": "نظرات",
+    "related": "محصولات مرتبط",
+    "quantity": "تعداد",
+    "share": "اشتراک‌گذاری",
+    "addToWishlist": "افزودن به علاقه‌مندی‌ها",
+    "removeFromWishlist": "حذف از علاقه‌مندی‌ها",
+    "addToCompare": "مقایسه",
+    "sku": "کد محصول",
+    "brand": "برند",
+    "category": "دسته‌بندی"
+  },
+  "cart": {
+    "title": "سبد خرید",
+    "empty": "سبد خرید شما خالی است",
+    "emptyDesc": "هنوز محصولی اضافه نکرده‌اید",
+    "continueShopping": "ادامه خرید",
+    "subtotal": "جمع جزء",
+    "discount": "تخفیف",
+    "shipping": "هزینه ارسال",
+    "total": "جمع کل",
+    "coupon": "کد تخفیف",
+    "applyCoupon": "اعمال",
+    "proceedToCheckout": "ادامه تسویه حساب",
+    "remove": "حذف",
+    "updateQuantity": "بروزرسانی تعداد"
+  },
+  "checkout": {
+    "title": "تسویه حساب",
+    "steps": {
+      "shipping": "ارسال",
+      "payment": "پرداخت",
+      "review": "بررسی"
+    },
+    "shippingAddress": "آدرس ارسال",
+    "paymentMethod": "روش پرداخت",
+    "orderSummary": "خلاصه سفارش",
+    "placeOrder": "ثبت سفارش",
+    "success": {
+      "title": "سفارش با موفقیت ثبت شد!",
+      "subtitle": "از خرید شما متشکریم. سفارش شما در حال پردازش است.",
+      "orderNumber": "شماره سفارش",
+      "trackOrder": "پیگیری سفارش",
+      "continueShopping": "ادامه خرید"
+    },
+    "failed": {
+      "title": "پرداخت ناموفق",
+      "subtitle": "پرداخت شما انجام نشد. لطفاً دوباره تلاش کنید.",
+      "retry": "تلاش مجدد"
+    }
+  },
+  "auth": {
+    "loginTitle": "خوش آمدید",
+    "loginSubtitle": "وارد حساب کاربری خود شوید",
+    "registerTitle": "ایجاد حساب",
+    "registerSubtitle": "همین امروز به فونی‌شاپ بپیوندید",
+    "forgotTitle": "فراموشی رمز عبور",
+    "forgotSubtitle": "ایمیل خود را برای بازیابی رمز وارد کنید",
+    "resetTitle": "بازیابی رمز عبور",
+    "resetSubtitle": "رمز عبور جدید خود را وارد کنید",
+    "email": "ایمیل",
+    "password": "رمز عبور",
+    "confirmPassword": "تکرار رمز عبور",
+    "firstName": "نام",
+    "lastName": "نام خانوادگی",
+    "phone": "شماره تلفن",
+    "rememberMe": "مرا به خاطر بسپار",
+    "forgotPassword": "رمز عبور را فراموش کرده‌اید؟",
+    "noAccount": "حساب کاربری ندارید؟",
+    "hasAccount": "قبلاً ثبت‌نام کرده‌اید؟",
+    "signUp": "ثبت‌نام",
+    "signIn": "ورود",
+    "sendResetLink": "ارسال لینک بازیابی",
+    "resetPassword": "بازیابی رمز"
+  },
+  "account": {
+    "dashboard": "داشبورد",
+    "profile": "پروفایل",
+    "orders": "سفارشات",
+    "wallet": "کیف پول",
+    "favorites": "علاقه‌مندی‌ها",
+    "addresses": "آدرس‌ها",
+    "coupons": "کدهای تخفیف",
+    "notifications": "اعلان‌ها",
+    "tickets": "تیکت‌های پشتیبانی",
+    "reviews": "نظرات من",
+    "club": "باشگاه مشتریان",
+    "security": "امنیت",
+    "welcomeBack": "خوش آمدید، {{name}}",
+    "recentOrders": "سفارشات اخیر",
+    "quickActions": "دسترسی سریع"
+  },
+  "blog": {
+    "title": "وبلاگ",
+    "readMore": "ادامه مطلب",
+    "readTime": "{{minutes}} دقیقه مطالعه",
+    "relatedPosts": "مطالب مرتبط",
+    "sharePost": "اشتراک‌گذاری"
+  },
+  "search": {
+    "title": "نتایج جستجو",
+    "for": "نتایج برای «{{query}}»",
+    "noResults": "محصولی با این جستجو یافت نشد"
+  },
+  "compare": {
+    "title": "مقایسه محصولات",
+    "empty": "محصولی برای مقایسه نیست",
+    "addProducts": "محصولات را برای مقایسه اضافه کنید",
+    "clearAll": "پاک کردن همه"
+  },
+  "wishlist": {
+    "title": "علاقه‌مندی‌های من",
+    "empty": "لیست علاقه‌مندی‌ها خالی است",
+    "emptyDesc": "محصولات مورد علاقه خود را ذخیره کنید"
+  },
+  "contact": {
+    "title": "تماس با ما",
+    "subtitle": "خوشحال می‌شویم از شما بشنویم",
+    "name": "نام",
+    "email": "ایمیل",
+    "subject": "موضوع",
+    "message": "پیام",
+    "send": "ارسال پیام",
+    "info": {
+      "address": "تهران، خیابان ولیعصر",
+      "phone": "۰۲۱-۱۲۳۴۵۶۷۸",
+      "email": "hello@phonyshop.com",
+      "hours": "شنبه تا پنجشنبه: ۹ تا ۱۸"
+    }
+  },
+  "footer": {
+    "about": "درباره فونی‌شاپ",
+    "aboutDesc": "مقصد مطمئن شما برای گوشی‌های پریمیوم و لوازم جانبی.",
+    "quickLinks": "لینک‌های سریع",
+    "customerService": "خدمات مشتریان",
+    "followUs": "ما را دنبال کنید",
+    "copyright": "© {{year}} فونی‌شاپ. تمامی حقوق محفوظ است.",
+    "privacy": "حریم خصوصی",
+    "terms": "شرایط استفاده"
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "common": {
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "account": "Account",
+    "blog": "Blog",
+    "search": "Search",
+    "compare": "Compare",
+    "wishlist": "Wishlist",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "viewAll": "View All",
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "outOfStock": "Out of Stock",
+    "inStock": "In Stock",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "searchPlaceholder": "Search products...",
+    "noResults": "No results found",
+    "currency": "USD"
+  },
+  "home": {
+    "hero": {
+      "title": "Premium Phones, Unmatched Experience",
+      "subtitle": "Discover the latest smartphones from top brands at unbeatable prices",
+      "cta": "Shop Now"
+    },
+    "featured": "Featured Products",
+    "latest": "Latest Arrivals",
+    "popular": "Most Popular",
+    "brands": "Shop by Brand",
+    "offers": "Special Offers",
+    "categories": "Browse Categories",
+    "reviews": "Customer Reviews",
+    "blog": "From Our Blog",
+    "newsletter": {
+      "title": "Stay Updated",
+      "subtitle": "Subscribe to get special offers and latest news",
+      "placeholder": "Enter your email",
+      "button": "Subscribe"
+    },
+    "faq": "Frequently Asked Questions",
+    "stats": {
+      "products": "Products",
+      "customers": "Happy Customers",
+      "brands": "Brands",
+      "orders": "Orders Delivered"
+    },
+    "advantages": "Why Choose PhonyShop",
+    "appBanner": {
+      "title": "Download Our App",
+      "subtitle": "Shop on the go with our mobile app"
+    },
+    "instagram": "Follow Us on Instagram",
+    "partners": "Our Partners"
+  },
+  "products": {
+    "title": "All Products",
+    "filters": "Filters",
+    "sort": "Sort By",
+    "sortOptions": {
+      "newest": "Newest",
+      "priceAsc": "Price: Low to High",
+      "priceDesc": "Price: High to Low",
+      "popular": "Most Popular",
+      "rating": "Top Rated"
+    },
+    "gridView": "Grid",
+    "listView": "List",
+    "showing": "Showing {{count}} products",
+    "noProducts": "No products found"
+  },
+  "product": {
+    "description": "Description",
+    "specifications": "Specifications",
+    "reviews": "Reviews",
+    "related": "Related Products",
+    "quantity": "Quantity",
+    "share": "Share",
+    "addToWishlist": "Add to Wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "addToCompare": "Compare",
+    "sku": "SKU",
+    "brand": "Brand",
+    "category": "Category"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "emptyDesc": "Looks like you haven't added anything yet",
+    "continueShopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "shipping": "Shipping",
+    "total": "Total",
+    "coupon": "Coupon Code",
+    "applyCoupon": "Apply",
+    "proceedToCheckout": "Proceed to Checkout",
+    "remove": "Remove",
+    "updateQuantity": "Update quantity"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "steps": {
+      "shipping": "Shipping",
+      "payment": "Payment",
+      "review": "Review"
+    },
+    "shippingAddress": "Shipping Address",
+    "paymentMethod": "Payment Method",
+    "orderSummary": "Order Summary",
+    "placeOrder": "Place Order",
+    "success": {
+      "title": "Order Placed Successfully!",
+      "subtitle": "Thank you for your purchase. Your order is being processed.",
+      "orderNumber": "Order Number",
+      "trackOrder": "Track Order",
+      "continueShopping": "Continue Shopping"
+    },
+    "failed": {
+      "title": "Payment Failed",
+      "subtitle": "We couldn't process your payment. Please try again.",
+      "retry": "Try Again"
+    }
+  },
+  "auth": {
+    "loginTitle": "Welcome Back",
+    "loginSubtitle": "Sign in to your account",
+    "registerTitle": "Create Account",
+    "registerSubtitle": "Join PhonyShop today",
+    "forgotTitle": "Forgot Password",
+    "forgotSubtitle": "Enter your email to reset your password",
+    "resetTitle": "Reset Password",
+    "resetSubtitle": "Enter your new password",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone Number",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "sendResetLink": "Send Reset Link",
+    "resetPassword": "Reset Password"
+  },
+  "account": {
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "orders": "Orders",
+    "wallet": "Wallet",
+    "favorites": "Favorites",
+    "addresses": "Addresses",
+    "coupons": "Coupons",
+    "notifications": "Notifications",
+    "tickets": "Support Tickets",
+    "reviews": "My Reviews",
+    "club": "Loyalty Club",
+    "security": "Security",
+    "welcomeBack": "Welcome back, {{name}}",
+    "recentOrders": "Recent Orders",
+    "quickActions": "Quick Actions"
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Read More",
+    "readTime": "{{minutes}} min read",
+    "relatedPosts": "Related Posts",
+    "sharePost": "Share this post"
+  },
+  "search": {
+    "title": "Search Results",
+    "for": "Results for \"{{query}}\"",
+    "noResults": "No products match your search"
+  },
+  "compare": {
+    "title": "Compare Products",
+    "empty": "No products to compare",
+    "addProducts": "Add products to compare",
+    "clearAll": "Clear All"
+  },
+  "wishlist": {
+    "title": "My Wishlist",
+    "empty": "Your wishlist is empty",
+    "emptyDesc": "Save items you love for later"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "info": {
+      "address": "123 Tech Street, San Francisco, CA",
+      "phone": "+1 (555) 123-4567",
+      "email": "hello@phonyshop.com",
+      "hours": "Mon - Fri: 9AM - 6PM"
+    }
+  },
+  "footer": {
+    "about": "About PhonyShop",
+    "aboutDesc": "Your trusted destination for premium smartphones and accessories.",
+    "quickLinks": "Quick Links",
+    "customerService": "Customer Service",
+    "followUs": "Follow Us",
+    "copyright": "© {{year}} PhonyShop. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  }
+}
