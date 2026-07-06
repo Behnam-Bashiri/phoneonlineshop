@@ -5,7 +5,15 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from django.utils.text import slugify
 
-from apps.accounts.models import Achievement, MembershipLevel, User
+from apps.accounts.models import (
+    Achievement,
+    Address,
+    MembershipLevel,
+    Profile,
+    User,
+    UserMembership,
+    Wallet,
+)
 from apps.blog.models import BlogCategory, BlogPost
 from apps.catalog.models import Brand, Category, Color, Product, ProductSpecification, ProductVariant, RAMOption, StorageOption
 from apps.cms.models import Banner, CustomerReview, FAQ, Menu, MenuItem, Page, Partner, SiteSettings
@@ -433,23 +441,91 @@ class Command(BaseCommand):
         self.stdout.write("  Popular searches created")
 
     def _seed_users(self):
-        if not User.objects.filter(email="admin@phonyshop.com").exists():
-            User.objects.create_superuser(
-                username="admin",
-                email="admin@phonyshop.com",
-                password="admin123",
-                first_name="Admin",
-                last_name="User",
+        admin, admin_created = self._get_or_create_user(
+            email="admin@phonyshop.com",
+            username="admin",
+            password="admin123",
+            first_name="Admin",
+            last_name="User",
+            is_superuser=True,
+            is_staff=True,
+            phone="+982112345678",
+            preferred_language="fa",
+        )
+        customer, customer_created = self._get_or_create_user(
+            email="customer@phonyshop.com",
+            username="customer",
+            password="customer123",
+            first_name="Ali",
+            last_name="Rezaei",
+            phone="+989121234567",
+            preferred_language="fa",
+        )
+
+        if admin:
+            Profile.objects.update_or_create(
+                user=admin,
+                defaults={
+                    "first_name_fa": "مدیر",
+                    "last_name_fa": "سیستم",
+                    "bio": "مدیر پلتفرم فونی‌شاپ",
+                },
             )
-        if not User.objects.filter(email="customer@phonyshop.com").exists():
-            User.objects.create_user(
-                username="customer",
-                email="customer@phonyshop.com",
-                password="customer123",
-                first_name="Sample",
-                last_name="Customer",
+
+        if customer:
+            Profile.objects.update_or_create(
+                user=customer,
+                defaults={
+                    "first_name_fa": "علی",
+                    "last_name_fa": "رضایی",
+                    "bio": "مشتری وفادار فونی‌شاپ",
+                },
             )
-        self.stdout.write("  Users created (admin@phonyshop.com / admin123)")
+            wallet, _ = Wallet.objects.get_or_create(user=customer)
+            wallet.balance = Decimal("12500000")
+            wallet.bonus_balance = Decimal("500000")
+            wallet.save(update_fields=["balance", "bonus_balance"])
+
+            gold_level = MembershipLevel.objects.filter(name="gold").first()
+            if gold_level:
+                UserMembership.objects.update_or_create(
+                    user=customer,
+                    defaults={"level": gold_level, "points": 2450, "total_spent": Decimal("15000000")},
+                )
+
+            tehran = Province.objects.filter(code="THR").first()
+            city = City.objects.filter(province=tehran).first() if tehran else None
+            if tehran and city:
+                Address.objects.update_or_create(
+                    user=customer,
+                    title="منزل",
+                    defaults={
+                        "recipient_name": "علی رضایی",
+                        "phone": "+989121234567",
+                        "province": tehran,
+                        "city": city,
+                        "postal_code": "1969712345",
+                        "address_line": "خیابان ولیعصر، پلاک ۱۲۳، واحد ۴",
+                        "is_default": True,
+                    },
+                )
+
+        self.stdout.write("  Users: admin@phonyshop.com / admin123")
+        self.stdout.write("  Users: customer@phonyshop.com / customer123")
+
+    def _get_or_create_user(self, email, username, password, **extra):
+        user = User.objects.filter(email=email).first()
+        if user:
+            return user, False
+        if extra.pop("is_superuser", False):
+            user = User.objects.create_superuser(
+                username=username, email=email, password=password, **extra
+            )
+        else:
+            user = User.objects.create_user(
+                username=username, email=email, password=password, **extra
+            )
+        return user, True
 
     def _seed_inventory(self):
         warehouse, _ = Warehouse.objects.get_or_create(

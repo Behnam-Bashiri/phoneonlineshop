@@ -27,6 +27,7 @@ import {
 import { useAuthStore } from "@/stores/auth-store";
 import { getApiErrorMessage } from "@/lib/api/client";
 import { toast } from "@/hooks/use-toast";
+import { MOCK_USER_HINTS } from "@/lib/mock-users";
 import { getTranslation } from "@/hooks/use-translation";
 import type { Locale } from "@/lib/i18n";
 
@@ -55,13 +56,13 @@ export function AuthForm({ locale, mode }: AuthFormProps) {
   const onSubmit = async (data: LoginFormData) => {
     try {
       if (mode === "login") {
-        await login(data.email, data.password);
+        await login(data.email, data.password, locale);
         router.push(`/${locale}/account`);
       }
     } catch (error) {
       toast({
-        title: "Error",
-        description: getApiErrorMessage(error),
+        title: t.toast.error,
+        description: error instanceof Error ? error.message : getApiErrorMessage(error),
         variant: "destructive",
       });
     }
@@ -128,6 +129,22 @@ export function AuthForm({ locale, mode }: AuthFormProps) {
           {mode === "register" && <RegisterForm locale={locale} />}
           {mode === "forgot" && <ForgotForm locale={locale} />}
           {mode === "reset" && <ResetForm locale={locale} />}
+
+          {mode === "login" && (
+            <div className="mt-6 rounded-xl bg-muted/50 p-4 text-xs text-muted-foreground space-y-2">
+              <p className="font-medium text-foreground">
+                {locale === "fa" ? "حساب‌های آزمایشی" : "Demo accounts"}
+              </p>
+              <p>
+                <span className="font-medium">{locale === "fa" ? "مدیر" : "Admin"}:</span>{" "}
+                {MOCK_USER_HINTS.admin.email} / {MOCK_USER_HINTS.admin.password}
+              </p>
+              <p>
+                <span className="font-medium">{locale === "fa" ? "مشتری" : "Customer"}:</span>{" "}
+                {MOCK_USER_HINTS.customer.email} / {MOCK_USER_HINTS.customer.password}
+              </p>
+            </div>
+          )}
 
           {mode === "login" && (
             <p className="text-center text-sm text-muted-foreground mt-6">

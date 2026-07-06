@@ -2,37 +2,70 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useMockUserData } from "@/hooks/use-mock-user-data";
 import { formatPrice, formatDate } from "@/lib/utils";
-import { getTranslation } from "@/hooks/use-translation";
+import { getTranslation } from "@/lib/translations";
 import type { Locale } from "@/lib/i18n";
 
-const mockOrders = [
-  { id: 1, order_number: "PS-20250601", status: "delivered", total: 1199, items: 1, created_at: "2025-06-01T00:00:00Z" },
-  { id: 2, order_number: "PS-20250515", status: "shipped", total: 249, items: 1, created_at: "2025-05-15T00:00:00Z" },
-  { id: 3, order_number: "PS-20250420", status: "processing", total: 1099, items: 1, created_at: "2025-04-20T00:00:00Z" },
-];
+const statusLabels: Record<Locale, Record<string, string>> = {
+  en: {
+    delivered: "Delivered",
+    shipped: "Shipped",
+    processing: "Processing",
+    pending: "Pending",
+    cancelled: "Cancelled",
+  },
+  fa: {
+    delivered: "تحویل شده",
+    shipped: "ارسال شده",
+    processing: "در حال پردازش",
+    pending: "در انتظار",
+    cancelled: "لغو شده",
+  },
+};
 
 export function OrdersPage({ locale }: { locale: Locale }) {
   const t = getTranslation(locale);
+  const data = useMockUserData(locale);
+  const orders = data?.orders ?? [];
 
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">{t.account.orders}</h1>
-      <div className="space-y-4">
-        {mockOrders.map((order) => (
-          <div key={order.id} className="glass-card p-4 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <p className="font-semibold">{order.order_number}</p>
-              <p className="text-sm text-muted-foreground">{formatDate(order.created_at, locale)} · {order.items} item(s)</p>
+      {orders.length === 0 ? (
+        <p className="text-muted-foreground">
+          {locale === "fa" ? "سفارشی یافت نشد." : "No orders found."}
+        </p>
+      ) : (
+        <div className="space-y-4">
+          {orders.map((order) => (
+            <div
+              key={order.id}
+              className="glass-card p-4 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+            >
+              <div>
+                <p className="font-semibold">{order.order_number}</p>
+                <p className="text-sm text-muted-foreground">
+                  {formatDate(order.created_at, locale)}
+                  {order.tracking_number &&
+                    ` · ${locale === "fa" ? "پیگیری" : "Tracking"}: ${order.tracking_number}`}
+                </p>
+              </div>
+              <div className="flex items-center gap-4">
+                <Badge
+                  variant={order.status === "delivered" ? "success" : "secondary"}
+                >
+                  {statusLabels[locale][order.status] ?? order.status}
+                </Badge>
+                <span className="font-bold">{formatPrice(order.total, locale)}</span>
+                <Button variant="outline" size="sm">
+                  {locale === "fa" ? "جزئیات" : "Details"}
+                </Button>
+              </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Badge variant={order.status === "delivered" ? "success" : "secondary"}>{order.status}</Badge>
-              <span className="font-bold">{formatPrice(order.total, locale)}</span>
-              <Button variant="outline" size="sm">Details</Button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

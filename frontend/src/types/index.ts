@@ -15,6 +15,9 @@ export interface User {
   bio?: string;
   is_verified: boolean;
   date_joined: string;
+  role?: "admin" | "customer";
+  is_staff?: boolean;
+  preferred_language?: string;
 }
 
 export interface AuthTokens {
