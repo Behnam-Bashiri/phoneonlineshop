@@ -5,14 +5,15 @@ import { Suspense } from "react";
 import { Search } from "lucide-react";
 import { ProductCard } from "@/components/product/product-card";
 import { ProductGridSkeleton } from "@/components/product/product-skeleton";
-import { mockProducts } from "@/lib/mock-data";
-import { getTranslation } from "@/hooks/use-translation";
+import { getMockProducts } from "@/lib/mock-data";
+import { getTranslation, translate } from "@/lib/translations";
 import type { Locale } from "@/lib/i18n";
 
 function SearchResults({ locale }: { locale: Locale }) {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const t = getTranslation(locale);
+  const mockProducts = getMockProducts(locale);
 
   const results = query
     ? mockProducts.filter(
@@ -28,7 +29,7 @@ function SearchResults({ locale }: { locale: Locale }) {
       <h1 className="text-3xl font-bold mb-2">{t.search.title}</h1>
       {query && (
         <p className="text-muted-foreground mb-8">
-          {t.search.for.replace("{{query}}", query)}
+          {translate(locale, "search.for", { query })}
         </p>
       )}
       {!query ? (

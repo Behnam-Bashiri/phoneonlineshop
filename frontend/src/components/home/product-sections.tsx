@@ -1,15 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { SectionHeader } from "@/components/common/section-header";
 import { ViewAllLink } from "@/components/common/view-all-link";
 import { ProductCard } from "@/components/product/product-card";
 import { FadeIn } from "@/components/common/motion-wrapper";
 import { getLucideIcon } from "@/lib/icons";
+import { getTranslation, translate } from "@/lib/translations";
 import type { Product } from "@/types";
 import type { Locale } from "@/lib/i18n";
-import { getTranslation } from "@/hooks/use-translation";
 
 interface ProductSectionProps {
   title: string;
@@ -32,7 +31,7 @@ export function ProductSection({
         <div className="flex items-end justify-between mb-8">
           <SectionHeader title={title} className="mb-0" />
           {viewAllHref && (
-            <ViewAllLink href={viewAllHref} label={t.common.viewAll} />
+            <ViewAllLink href={viewAllHref} label={t.common.viewAll} locale={locale} />
           )}
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
@@ -65,17 +64,9 @@ export function BrandGrid({ brands, locale, title }: BrandGridProps) {
                 href={`/${locale}/products?brand=${brand.slug}`}
                 className="glass-card flex items-center justify-center h-20 md:h-24 p-4 hover:shadow-lg transition-shadow"
               >
-                {brand.logo ? (
-                  <Image
-                    src={brand.logo}
-                    alt={brand.name}
-                    width={80}
-                    height={40}
-                    className="object-contain dark:invert"
-                  />
-                ) : (
-                  <span className="font-semibold text-sm">{brand.name}</span>
-                )}
+                <span className="font-semibold text-sm md:text-base text-center">
+                  {brand.name}
+                </span>
               </Link>
             </FadeIn>
           ))}
@@ -113,7 +104,7 @@ export function CategoryGrid({ categories, locale, title }: CategoryGridProps) {
                   <span className="font-medium text-sm text-center">{cat.name}</span>
                   {cat.product_count && (
                     <span className="text-xs text-muted-foreground mt-1">
-                      {cat.product_count} items
+                      {translate(locale, "common.items", { count: cat.product_count })}
                     </span>
                   )}
                 </Link>

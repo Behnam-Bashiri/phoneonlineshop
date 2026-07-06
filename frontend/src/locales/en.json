@@ -31,7 +31,16 @@
     "submit": "Submit",
     "searchPlaceholder": "Search products...",
     "noResults": "No results found",
-    "currency": "USD"
+    "currency": "USD",
+    "new": "New",
+    "addedToCart": "Added to cart",
+    "off": "OFF",
+    "free": "Free",
+    "items": "{{count}} items",
+    "verified": "Verified Purchase",
+    "siteName": "PhonyShop",
+    "siteTitle": "PhonyShop - Premium Phones & Accessories",
+    "siteDescription": "Discover the latest smartphones from top brands at unbeatable prices."
   },
   "home": {
     "hero": {
@@ -66,7 +75,18 @@
       "subtitle": "Shop on the go with our mobile app"
     },
     "instagram": "Follow Us on Instagram",
-    "partners": "Our Partners"
+    "partners": "Our Partners",
+    "countdown": {
+      "title": "Summer Mega Sale",
+      "subtitle": "Don't miss out on our biggest sale of the year!",
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds",
+      "hrs": "Hrs",
+      "min": "Min",
+      "sec": "Sec"
+    }
   },
   "products": {
     "title": "All Products",
@@ -96,7 +116,12 @@
     "addToCompare": "Compare",
     "sku": "SKU",
     "brand": "Brand",
-    "category": "Category"
+    "category": "Category",
+    "freeShipping": "Free Shipping",
+    "warranty": "2-Year Warranty",
+    "returns": "30-Day Returns",
+    "noSpecs": "No specifications available.",
+    "reviewsPlaceholder": "Reviews will be loaded from the API."
   },
   "cart": {
     "title": "Shopping Cart",
@@ -194,7 +219,11 @@
     "title": "Compare Products",
     "empty": "No products to compare",
     "addProducts": "Add products to compare",
-    "clearAll": "Clear All"
+    "clearAll": "Clear All",
+    "price": "Price",
+    "brand": "Brand",
+    "rating": "Rating",
+    "stock": "Stock"
   },
   "wishlist": {
     "title": "My Wishlist",
@@ -224,6 +253,34 @@
     "followUs": "Follow Us",
     "copyright": "© {{year}} PhonyShop. All rights reserved.",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "terms": "Terms of Service",
+    "shipping": "Shipping Info",
+    "returns": "Returns",
+    "support": "Support"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "filters": {
+    "priceRange": "Price Range",
+    "categories": "Categories",
+    "brands": "Brands"
+  },
+  "toast": {
+    "subscribed": "Subscribed!",
+    "subscribedDesc": "Thank you for subscribing.",
+    "messageSent": "Message sent!",
+    "messageSentDesc": "We'll get back to you soon.",
+    "profileUpdated": "Profile updated",
+    "passwordChanged": "Password changed",
+    "copied": "Copied!",
+    "error": "Error"
+  },
+  "app": {
+    "appStore": "App Store",
+    "googlePlay": "Google Play"
   }
 }

@@ -1,13 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Heart, ShoppingCart, Star, GitCompareArrows } from "lucide-react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { SafeImage } from "@/components/common/safe-image";
 import { cn, formatPrice } from "@/lib/utils";
+import { getTranslation } from "@/lib/translations";
 import { useCartStore } from "@/stores/cart-store";
 import { useWishlistStore } from "@/stores/wishlist-store";
 import { useCompareStore } from "@/stores/compare-store";
@@ -22,6 +23,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, locale, view = "grid" }: ProductCardProps) {
+  const t = getTranslation(locale);
   const addToCart = useCartStore((s) => s.addItem);
   const { toggleItem, isInWishlist } = useWishlistStore();
   const { addItem: addToCompare, isInCompare } = useCompareStore();
@@ -32,7 +34,11 @@ export function ProductCard({ product, locale, view = "grid" }: ProductCardProps
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     addToCart(product);
-    toast({ title: "Added to cart", description: product.name, variant: "success" });
+    toast({
+      title: t.common.addedToCart,
+      description: product.name,
+      variant: "success",
+    });
   };
 
   if (view === "list") {
@@ -41,16 +47,14 @@ export function ProductCard({ product, locale, view = "grid" }: ProductCardProps
         <Card className="group overflow-hidden glass-card hover:shadow-xl transition-all duration-300">
           <div className="flex flex-col sm:flex-row gap-4 p-4">
             <div className="relative w-full sm:w-48 h-48 shrink-0 rounded-xl overflow-hidden bg-muted">
-              {primaryImage && (
-                <Image
-                  src={primaryImage}
-                  alt={product.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              )}
+              <SafeImage
+                src={primaryImage}
+                alt={product.name}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
               {product.discount_percent && (
-                <Badge className="absolute top-2 left-2" variant="destructive">
+                <Badge className="absolute top-2 start-2" variant="destructive">
                   -{product.discount_percent}%
                 </Badge>
               )}
@@ -82,8 +86,8 @@ export function ProductCard({ product, locale, view = "grid" }: ProductCardProps
                   )}
                 </div>
                 <Button size="sm" variant="gradient" onClick={handleAddToCart}>
-                  <ShoppingCart className="h-4 w-4 mr-1" />
-                  Add to Cart
+                  <ShoppingCart className="h-4 w-4 me-1" />
+                  {t.common.addToCart}
                 </Button>
               </div>
             </div>
@@ -98,21 +102,19 @@ export function ProductCard({ product, locale, view = "grid" }: ProductCardProps
       <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
         <Card className="group overflow-hidden glass-card hover:shadow-xl transition-shadow duration-300 h-full">
           <div className="relative aspect-square overflow-hidden bg-muted">
-            {primaryImage && (
-              <Image
-                src={primaryImage}
-                alt={product.name}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-            )}
-            <div className="absolute top-2 left-2 flex flex-col gap-1">
-              {product.is_new && <Badge variant="success">New</Badge>}
+            <SafeImage
+              src={primaryImage}
+              alt={product.name}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute top-2 start-2 flex flex-col gap-1">
+              {product.is_new && <Badge variant="success">{t.common.new}</Badge>}
               {product.discount_percent && (
                 <Badge variant="destructive">-{product.discount_percent}%</Badge>
               )}
             </div>
-            <div className="absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute top-2 end-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
               <Button
                 size="icon"
                 variant="glass"
@@ -156,9 +158,7 @@ export function ProductCard({ product, locale, view = "grid" }: ProductCardProps
             </div>
             <div className="flex items-center justify-between mt-3">
               <div className="flex items-baseline gap-1.5">
-                <span className="font-bold">
-                  {formatPrice(product.price, locale)}
-                </span>
+                <span className="font-bold">{formatPrice(product.price, locale)}</span>
                 {product.compare_at_price && (
                   <span className="text-xs text-muted-foreground line-through">
                     {formatPrice(product.compare_at_price, locale)}

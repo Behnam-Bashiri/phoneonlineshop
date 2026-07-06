@@ -20,10 +20,10 @@ export function Footer({ locale }: FooterProps) {
   ];
 
   const serviceLinks = [
-    { href: `/${locale}/pages/shipping`, label: "Shipping Info" },
-    { href: `/${locale}/pages/returns`, label: "Returns" },
+    { href: `/${locale}/pages/shipping`, label: t.footer.shipping },
+    { href: `/${locale}/pages/returns`, label: t.footer.returns },
     { href: `/${locale}/pages/faq`, label: t.home.faq },
-    { href: `/${locale}/account/tickets`, label: "Support" },
+    { href: `/${locale}/account/tickets`, label: t.footer.support },
   ];
 
   const socialLinks = [
@@ -42,7 +42,7 @@ export function Footer({ locale }: FooterProps) {
               <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
                 <Smartphone className="h-4 w-4 text-white" />
               </div>
-              <span className="gradient-text">PhonyShop</span>
+              <span className="gradient-text">{t.common.siteName}</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {t.footer.aboutDesc}

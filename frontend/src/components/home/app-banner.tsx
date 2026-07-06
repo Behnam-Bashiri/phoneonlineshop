@@ -4,7 +4,7 @@ import { Smartphone, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/common/motion-wrapper";
 import type { Locale } from "@/lib/i18n";
-import { getTranslation } from "@/hooks/use-translation";
+import { getTranslation, translate } from "@/lib/translations";
 
 interface AppBannerProps {
   locale: Locale;
@@ -21,7 +21,7 @@ export function AppBanner({ locale }: AppBannerProps) {
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl" />
             <div className="relative flex flex-col md:flex-row items-center gap-8">
-              <div className="flex-1 text-center md:text-left">
+              <div className="flex-1 text-center md:text-start">
                 <h2 className="text-2xl md:text-3xl font-bold text-white">
                   {t.home.appBanner.title}
                 </h2>
@@ -30,16 +30,16 @@ export function AppBanner({ locale }: AppBannerProps) {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
                   <Button variant="gradient" size="lg" className="rounded-full">
-                    <Download className="mr-2 h-5 w-5" />
-                    App Store
+                    <Download className="me-2 h-5 w-5" />
+                    {t.app.appStore}
                   </Button>
                   <Button
                     variant="outline"
                     size="lg"
                     className="rounded-full border-white/20 text-white hover:bg-white/10"
                   >
-                    <Download className="mr-2 h-5 w-5" />
-                    Google Play
+                    <Download className="me-2 h-5 w-5" />
+                    {t.app.googlePlay}
                   </Button>
                 </div>
               </div>

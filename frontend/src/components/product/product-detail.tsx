@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import { SafeImage } from "@/components/common/safe-image";
 import Link from "next/link";
 import {
   Star,
@@ -51,7 +51,7 @@ export function ProductDetail({
 
   const handleAddToCart = () => {
     addToCart(product, undefined, quantity);
-    toast({ title: "Added to cart", description: product.name, variant: "success" });
+    toast({ title: t.common.addedToCart, description: product.name, variant: "success" });
   };
 
   return (
@@ -61,7 +61,7 @@ export function ProductDetail({
           <div className="space-y-4">
             <div className="relative aspect-square rounded-3xl overflow-hidden bg-muted glass-card">
               {product.images[selectedImage] && (
-                <Image
+                <SafeImage
                   src={product.images[selectedImage].image}
                   alt={product.name}
                   fill
@@ -70,7 +70,7 @@ export function ProductDetail({
                 />
               )}
               {product.discount_percent && (
-                <Badge variant="destructive" className="absolute top-4 left-4">
+                <Badge variant="destructive" className="absolute top-4 start-4">
                   -{product.discount_percent}%
                 </Badge>
               )}
@@ -86,7 +86,7 @@ export function ProductDetail({
                       selectedImage === i ? "border-primary" : "border-transparent"
                     )}
                   >
-                    <Image src={img.image} alt="" fill className="object-cover" />
+                    <SafeImage src={img.image} alt="" fill className="object-cover" />
                   </button>
                 ))}
               </div>
@@ -115,7 +115,7 @@ export function ProductDetail({
               </div>
               <span className="text-sm font-medium">{product.rating}</span>
               <span className="text-sm text-muted-foreground">
-                ({product.review_count} reviews)
+                ({product.review_count} {t.product.reviews})
               </span>
             </div>
 
@@ -165,7 +165,7 @@ export function ProductDetail({
 
             <div className="flex flex-col sm:flex-row gap-3 mt-6">
               <Button variant="gradient" size="lg" className="flex-1" onClick={handleAddToCart}>
-                <ShoppingCart className="mr-2 h-5 w-5" />
+                <ShoppingCart className="me-2 h-5 w-5" />
                 {t.common.addToCart}
               </Button>
               <Button variant="outline" size="lg" className="flex-1" asChild>
@@ -179,7 +179,7 @@ export function ProductDetail({
                 size="sm"
                 onClick={() => toggleItem(product)}
               >
-                <Heart className={cn("h-4 w-4 mr-1", inWishlist && "fill-red-500 text-red-500")} />
+                <Heart className={cn("h-4 w-4 me-1", inWishlist && "fill-red-500 text-red-500")} />
                 {inWishlist ? t.product.removeFromWishlist : t.product.addToWishlist}
               </Button>
               <Button
@@ -187,20 +187,20 @@ export function ProductDetail({
                 size="sm"
                 onClick={() => addToCompare(product)}
               >
-                <GitCompareArrows className="h-4 w-4 mr-1" />
+                <GitCompareArrows className="h-4 w-4 me-1" />
                 {t.product.addToCompare}
               </Button>
               <Button variant="ghost" size="sm">
-                <Share2 className="h-4 w-4 mr-1" />
+                <Share2 className="h-4 w-4 me-1" />
                 {t.product.share}
               </Button>
             </div>
 
             <div className="grid grid-cols-3 gap-4 mt-8">
               {[
-                { icon: Truck, text: "Free Shipping" },
-                { icon: Shield, text: "2-Year Warranty" },
-                { icon: RotateCcw, text: "30-Day Returns" },
+                { icon: Truck, text: t.product.freeShipping },
+                { icon: Shield, text: t.product.warranty },
+                { icon: RotateCcw, text: t.product.returns },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="text-center glass-card p-3">
                   <Icon className="h-5 w-5 mx-auto text-blue-600" />
@@ -236,13 +236,13 @@ export function ProductDetail({
                   ))}
                 </dl>
               ) : (
-                <p className="text-muted-foreground">No specifications available.</p>
+                <p className="text-muted-foreground">{t.product.noSpecs}</p>
               )}
             </div>
           </TabsContent>
           <TabsContent value="reviews" className="mt-6">
             <div className="glass-card p-6 text-center text-muted-foreground">
-              Reviews will be loaded from the API.
+              {t.product.reviewsPlaceholder}
             </div>
           </TabsContent>
         </Tabs>

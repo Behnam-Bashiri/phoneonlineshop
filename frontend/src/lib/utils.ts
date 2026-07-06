@@ -5,14 +5,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatPrice(
-  amount: number,
-  locale: string = "en",
-  currency: string = "USD"
-): string {
-  return new Intl.NumberFormat(locale === "fa" ? "fa-IR" : "en-US", {
+export function formatPrice(amount: number, locale: string = "en"): string {
+  if (locale === "fa") {
+    const toman = Math.round(amount * 50000);
+    return `${new Intl.NumberFormat("fa-IR").format(toman)} تومان`;
+  }
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency,
+    currency: "USD",
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   }).format(amount);

@@ -23,8 +23,9 @@ import {
 } from "@/components/ui/sheet";
 import { ProductCard } from "@/components/product/product-card";
 import { useInfiniteScroll } from "@/hooks/use-infinite-scroll";
-import { mockProducts, mockCategories, mockBrands } from "@/lib/mock-data";
-import { getTranslation } from "@/hooks/use-translation";
+import { getMockProducts, getMockCategories, getMockBrands } from "@/lib/mock-data";
+import { getTranslation, translate } from "@/lib/translations";
+import { formatPrice } from "@/lib/utils";
 import type { Locale } from "@/lib/i18n";
 
 const PAGE_SIZE = 6;
@@ -36,6 +37,9 @@ interface ProductsCatalogProps {
 export function ProductsCatalog({ locale }: ProductsCatalogProps) {
   const searchParams = useSearchParams();
   const t = getTranslation(locale);
+  const mockProducts = getMockProducts(locale);
+  const mockCategories = getMockCategories(locale);
+  const mockBrands = getMockBrands(locale);
 
   const [view, setView] = useState<"grid" | "list">("grid");
   const [sort, setSort] = useState(searchParams.get("sort") || "newest");
@@ -100,7 +104,7 @@ export function ProductsCatalog({ locale }: ProductsCatalogProps) {
       <div>
         <Label className="mb-3 block font-semibold">{t.products.filters}</Label>
         <div className="space-y-3">
-          <Label className="text-sm text-muted-foreground">Price Range</Label>
+          <Label className="text-sm text-muted-foreground">{t.filters.priceRange}</Label>
           <Slider
             value={priceRange}
             onValueChange={setPriceRange}
@@ -109,14 +113,14 @@ export function ProductsCatalog({ locale }: ProductsCatalogProps) {
             className="mt-2"
           />
           <div className="flex justify-between text-sm text-muted-foreground">
-            <span>${priceRange[0]}</span>
-            <span>${priceRange[1]}</span>
+            <span>{formatPrice(priceRange[0], locale)}</span>
+            <span>{formatPrice(priceRange[1], locale)}</span>
           </div>
         </div>
       </div>
 
       <div>
-        <Label className="mb-3 block font-semibold">Categories</Label>
+        <Label className="mb-3 block font-semibold">{t.filters.categories}</Label>
         <div className="space-y-2">
           {mockCategories.map((cat) => (
             <div key={cat.id} className="flex items-center gap-2">
@@ -141,7 +145,7 @@ export function ProductsCatalog({ locale }: ProductsCatalogProps) {
       </div>
 
       <div>
-        <Label className="mb-3 block font-semibold">Brands</Label>
+        <Label className="mb-3 block font-semibold">{t.filters.brands}</Label>
         <div className="space-y-2">
           {mockBrands.map((brand) => (
             <div key={brand.id} className="flex items-center gap-2">
@@ -173,7 +177,7 @@ export function ProductsCatalog({ locale }: ProductsCatalogProps) {
         <div>
           <h1 className="text-3xl font-bold">{t.products.title}</h1>
           <p className="text-muted-foreground mt-1">
-            {t.products.showing.replace("{{count}}", String(filteredProducts.length))}
+            {translate(locale, "products.showing", { count: filteredProducts.length })}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -211,7 +215,7 @@ export function ProductsCatalog({ locale }: ProductsCatalogProps) {
                 <SlidersHorizontal className="h-4 w-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left">
+            <SheetContent side={locale === "fa" ? "right" : "left"}>
               <SheetHeader>
                 <SheetTitle>{t.products.filters}</SheetTitle>
               </SheetHeader>

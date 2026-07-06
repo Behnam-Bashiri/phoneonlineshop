@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeader } from "@/components/common/section-header";
 import { FadeIn } from "@/components/common/motion-wrapper";
+import { SafeImage } from "@/components/common/safe-image";
 import { useCountdown } from "@/hooks/use-countdown";
+import { getTranslation } from "@/lib/translations";
 import type { Offer } from "@/types";
 import type { Locale } from "@/lib/i18n";
 
@@ -35,11 +36,18 @@ export function OffersSection({ offers, locale, title }: OffersSectionProps) {
 
 function OfferCard({ offer, locale }: { offer: Offer; locale: Locale }) {
   const countdown = useCountdown(offer.end_date);
+  const t = getTranslation(locale);
+  const labels = [
+    { label: t.home.countdown.days, value: countdown.days },
+    { label: t.home.countdown.hrs, value: countdown.hours },
+    { label: t.home.countdown.min, value: countdown.minutes },
+    { label: t.home.countdown.sec, value: countdown.seconds },
+  ];
 
   return (
     <Link href={`/${locale}${offer.link}`}>
       <div className="group relative overflow-hidden rounded-3xl h-64 md:h-72">
-        <Image
+        <SafeImage
           src={offer.image}
           alt={offer.title}
           fill
@@ -48,18 +56,13 @@ function OfferCard({ offer, locale }: { offer: Offer; locale: Locale }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
         <div className="absolute inset-0 p-6 flex flex-col justify-end">
           <Badge variant="destructive" className="w-fit mb-2">
-            -{offer.discount}% OFF
+            -{offer.discount}% {t.common.off}
           </Badge>
           <h3 className="text-2xl font-bold text-white">{offer.title}</h3>
           <p className="text-white/70 text-sm mt-1">{offer.description}</p>
           {!countdown.expired && (
             <div className="flex gap-3 mt-4">
-              {[
-                { label: "Days", value: countdown.days },
-                { label: "Hrs", value: countdown.hours },
-                { label: "Min", value: countdown.minutes },
-                { label: "Sec", value: countdown.seconds },
-              ].map(({ label, value }) => (
+              {labels.map(({ label, value }) => (
                 <div
                   key={label}
                   className="glass rounded-xl px-3 py-2 text-center min-w-[52px]"
@@ -81,13 +84,27 @@ function OfferCard({ offer, locale }: { offer: Offer; locale: Locale }) {
 interface CountdownBannerProps {
   endDate: string;
   title: string;
+  subtitle?: string;
   locale: Locale;
 }
 
-export function CountdownBanner({ endDate, title, locale }: CountdownBannerProps) {
+export function CountdownBanner({
+  endDate,
+  title,
+  subtitle,
+  locale,
+}: CountdownBannerProps) {
   const countdown = useCountdown(endDate);
+  const t = getTranslation(locale);
 
   if (countdown.expired) return null;
+
+  const labels = [
+    { label: t.home.countdown.days, value: countdown.days },
+    { label: t.home.countdown.hours, value: countdown.hours },
+    { label: t.home.countdown.minutes, value: countdown.minutes },
+    { label: t.home.countdown.seconds, value: countdown.seconds },
+  ];
 
   return (
     <section className="py-8">
@@ -96,21 +113,18 @@ export function CountdownBanner({ endDate, title, locale }: CountdownBannerProps
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-8 md:p-12"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-r rtl:bg-gradient-to-l from-blue-600 via-purple-600 to-pink-600 p-8 md:p-12"
         >
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
           <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
+            <div className="text-center md:text-start">
               <h2 className="text-2xl md:text-3xl font-bold text-white">{title}</h2>
-              <p className="text-white/80 mt-2">Don&apos;t miss out on exclusive deals</p>
+              <p className="text-white/80 mt-2">
+                {subtitle ?? t.home.countdown.subtitle}
+              </p>
             </div>
             <div className="flex gap-4">
-              {[
-                { label: "Days", value: countdown.days },
-                { label: "Hours", value: countdown.hours },
-                { label: "Minutes", value: countdown.minutes },
-                { label: "Seconds", value: countdown.seconds },
-              ].map(({ label, value }) => (
+              {labels.map(({ label, value }) => (
                 <div
                   key={label}
                   className="bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-3 text-center min-w-[70px]"

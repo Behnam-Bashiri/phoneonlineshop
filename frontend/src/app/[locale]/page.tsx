@@ -16,17 +16,17 @@ import { AppBanner } from "@/components/home/app-banner";
 import { InstagramSection } from "@/components/home/instagram-section";
 import { PartnersSection } from "@/components/home/partners-section";
 import {
-  mockProducts,
-  mockHeroSlides,
-  mockBrands,
-  mockCategories,
-  mockOffers,
-  mockReviews,
-  mockBlogPosts,
-  mockFAQs,
-  mockStats,
-  mockAdvantages,
-  mockPartners,
+  getMockProducts,
+  getMockHeroSlides,
+  getMockBrands,
+  getMockCategories,
+  getMockOffers,
+  getMockReviews,
+  getMockBlogPosts,
+  getMockFAQs,
+  getMockStats,
+  getMockAdvantages,
+  getMockPartners,
 } from "@/lib/mock-data";
 import { getTranslation } from "@/lib/translations";
 import type { Locale } from "@/lib/i18n";
@@ -39,8 +39,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = getTranslation(locale as Locale);
   return {
-    title: "PhonyShop - Premium Phones & Accessories",
-    description: t.home.hero.subtitle,
+    title: t.common.siteTitle,
+    description: t.common.siteDescription,
   };
 }
 
@@ -53,6 +53,7 @@ export default async function HomePage({
   const t = getTranslation(locale as Locale);
   const loc = locale as Locale;
 
+  const mockProducts = getMockProducts(loc);
   const featured = mockProducts.filter((p) => p.is_featured);
   const latest = [...mockProducts].sort(
     (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
@@ -62,10 +63,10 @@ export default async function HomePage({
   return (
     <>
       <div className="container mx-auto px-4 pt-4 md:pt-8">
-        <HeroSlider slides={mockHeroSlides} locale={loc} />
+        <HeroSlider slides={getMockHeroSlides(loc)} locale={loc} />
       </div>
 
-      <AdvantagesSection advantages={mockAdvantages} title={t.home.advantages} />
+      <AdvantagesSection advantages={getMockAdvantages(loc)} title={t.home.advantages} />
 
       <ProductSection
         title={t.home.featured}
@@ -76,14 +77,15 @@ export default async function HomePage({
 
       <CountdownBanner
         endDate="2025-07-15T23:59:59Z"
-        title="Summer Mega Sale"
+        title={t.home.countdown.title}
+        subtitle={t.home.countdown.subtitle}
         locale={loc}
       />
 
-      <OffersSection offers={mockOffers} locale={loc} title={t.home.offers} />
+      <OffersSection offers={getMockOffers(loc)} locale={loc} title={t.home.offers} />
 
       <CategoryGrid
-        categories={mockCategories}
+        categories={getMockCategories(loc)}
         locale={loc}
         title={t.home.categories}
       />
@@ -95,7 +97,7 @@ export default async function HomePage({
         viewAllHref={`/${locale}/products?sort=newest`}
       />
 
-      <BrandGrid brands={mockBrands} locale={loc} title={t.home.brands} />
+      <BrandGrid brands={getMockBrands(loc)} locale={loc} title={t.home.brands} />
 
       <ProductSection
         title={t.home.popular}
@@ -104,17 +106,17 @@ export default async function HomePage({
         viewAllHref={`/${locale}/products?sort=popular`}
       />
 
-      <StatsSection stats={mockStats} locale={loc} />
+      <StatsSection stats={getMockStats()} locale={loc} />
 
-      <ReviewsSection reviews={mockReviews} locale={loc} title={t.home.reviews} />
+      <ReviewsSection reviews={getMockReviews(loc)} locale={loc} title={t.home.reviews} />
 
-      <BlogSection posts={mockBlogPosts} locale={loc} title={t.home.blog} />
+      <BlogSection posts={getMockBlogPosts(loc)} locale={loc} title={t.home.blog} />
 
-      <InstagramSection title={t.home.instagram} />
+      <InstagramSection title={t.home.instagram} locale={loc} />
 
-      <PartnersSection partners={mockPartners} title={t.home.partners} />
+      <PartnersSection partners={getMockPartners(loc)} title={t.home.partners} />
 
-      <FAQSection faqs={mockFAQs} title={t.home.faq} />
+      <FAQSection faqs={getMockFAQs(loc)} title={t.home.faq} />
 
       <NewsletterSection locale={loc} />
 

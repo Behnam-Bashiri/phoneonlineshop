@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { GitCompareArrows, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SafeImage } from "@/components/common/safe-image";
 import { useCompareStore } from "@/stores/compare-store";
 import { formatPrice } from "@/lib/utils";
-import { getTranslation } from "@/hooks/use-translation";
+import { getTranslation } from "@/lib/translations";
 import type { Locale } from "@/lib/i18n";
 
 export function ComparePageContent({ locale }: { locale: Locale }) {
@@ -30,25 +30,40 @@ export function ComparePageContent({ locale }: { locale: Locale }) {
     <div className="container mx-auto px-4 py-8 md:py-12">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold">{t.compare.title}</h1>
-        <Button variant="outline" size="sm" onClick={clearAll}>{t.compare.clearAll}</Button>
+        <Button variant="outline" size="sm" onClick={clearAll}>
+          {t.compare.clearAll}
+        </Button>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[600px]">
           <thead>
             <tr>
-              <th className="p-4 text-left" />
+              <th className="p-4 text-start" />
               {items.map((product) => (
                 <th key={product.id} className="p-4 text-center min-w-[200px]">
                   <div className="relative">
-                    <Button variant="ghost" size="icon" className="absolute -top-2 -right-2 h-6 w-6" onClick={() => removeItem(product.id)}>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute -top-2 -end-2 h-6 w-6"
+                      onClick={() => removeItem(product.id)}
+                    >
                       <X className="h-3 w-3" />
                     </Button>
                     <div className="relative w-32 h-32 mx-auto rounded-xl overflow-hidden bg-muted mb-3">
                       {product.images[0] && (
-                        <Image src={product.images[0].image} alt={product.name} fill className="object-cover" />
+                        <SafeImage
+                          src={product.images[0].image}
+                          alt={product.name}
+                          fill
+                          className="object-cover"
+                        />
                       )}
                     </div>
-                    <Link href={`/${locale}/products/${product.slug}`} className="font-semibold text-sm hover:text-blue-600">
+                    <Link
+                      href={`/${locale}/products/${product.slug}`}
+                      className="font-semibold text-sm hover:text-blue-600"
+                    >
                       {product.name}
                     </Link>
                   </div>
@@ -58,27 +73,35 @@ export function ComparePageContent({ locale }: { locale: Locale }) {
           </thead>
           <tbody>
             <tr className="border-t">
-              <td className="p-4 font-medium text-sm">Price</td>
+              <td className="p-4 font-medium text-sm">{t.compare.price}</td>
               {items.map((p) => (
-                <td key={p.id} className="p-4 text-center font-bold">{formatPrice(p.price, locale)}</td>
+                <td key={p.id} className="p-4 text-center font-bold">
+                  {formatPrice(p.price, locale)}
+                </td>
               ))}
             </tr>
             <tr className="border-t">
-              <td className="p-4 font-medium text-sm">Brand</td>
+              <td className="p-4 font-medium text-sm">{t.compare.brand}</td>
               {items.map((p) => (
-                <td key={p.id} className="p-4 text-center text-sm">{p.brand?.name || "-"}</td>
+                <td key={p.id} className="p-4 text-center text-sm">
+                  {p.brand?.name || "-"}
+                </td>
               ))}
             </tr>
             <tr className="border-t">
-              <td className="p-4 font-medium text-sm">Rating</td>
+              <td className="p-4 font-medium text-sm">{t.compare.rating}</td>
               {items.map((p) => (
-                <td key={p.id} className="p-4 text-center text-sm">{p.rating} ({p.review_count})</td>
+                <td key={p.id} className="p-4 text-center text-sm">
+                  {p.rating} ({p.review_count})
+                </td>
               ))}
             </tr>
             <tr className="border-t">
-              <td className="p-4 font-medium text-sm">Stock</td>
+              <td className="p-4 font-medium text-sm">{t.compare.stock}</td>
               {items.map((p) => (
-                <td key={p.id} className="p-4 text-center text-sm">{p.stock > 0 ? "In Stock" : "Out of Stock"}</td>
+                <td key={p.id} className="p-4 text-center text-sm">
+                  {p.stock > 0 ? t.common.inStock : t.common.outOfStock}
+                </td>
               ))}
             </tr>
           </tbody>

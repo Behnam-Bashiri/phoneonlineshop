@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import { Providers } from "@/components/common/providers";
+import { LocaleAttributes } from "@/components/common/locale-attributes";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { locales, localeDirections, isValidLocale, type Locale } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -22,9 +24,15 @@ export default async function LocaleLayout({
   }
 
   const direction = localeDirections[locale as Locale];
+  const isRtl = direction === "rtl";
 
   return (
-    <div lang={locale} dir={direction}>
+    <div
+      lang={locale}
+      dir={direction}
+      className={cn(isRtl && "font-[family-name:var(--font-vazirmatn)]")}
+    >
+      <LocaleAttributes locale={locale as Locale} />
       <Providers>
         <div className="flex min-h-screen flex-col">
           <Header locale={locale as Locale} />

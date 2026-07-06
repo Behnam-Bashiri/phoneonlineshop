@@ -56,6 +56,14 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
+
+  [dir="rtl"] {
+    font-family: var(--font-vazirmatn), system-ui, sans-serif;
+  }
+
+  [dir="ltr"] {
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+  }
 }
 
 @layer utilities {
@@ -68,7 +76,19 @@
   .gradient-text {
     @apply bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent;
   }
+  [dir="rtl"] .gradient-text {
+    @apply bg-gradient-to-l;
+  }
   .gradient-bg {
     @apply bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-blue-950/30 dark:via-purple-950/30 dark:to-pink-950/30;
+  }
+  .hero-gradient {
+    @apply bg-gradient-to-r from-black/70 via-black/40 to-transparent;
+  }
+  [dir="rtl"] .hero-gradient {
+    @apply bg-gradient-to-l from-black/70 via-black/40 to-transparent;
+  }
+  .flip-rtl {
+    @apply rtl:rotate-180;
   }
 }

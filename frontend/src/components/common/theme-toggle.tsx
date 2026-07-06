@@ -9,9 +9,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { getTranslation } from "@/lib/translations";
+import type { Locale } from "@/lib/i18n";
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+  locale?: Locale;
+}
+
+export function ThemeToggle({ locale = "en" }: ThemeToggleProps) {
   const { setTheme } = useTheme();
+  const t = getTranslation(locale);
 
   return (
     <DropdownMenu>
@@ -19,21 +26,21 @@ export function ThemeToggle() {
         <Button variant="ghost" size="icon" className="rounded-full">
           <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
+          <span className="sr-only">{t.theme.toggle}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          <Sun className="mr-2 h-4 w-4" />
-          Light
+          <Sun className="me-2 h-4 w-4" />
+          {t.theme.light}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          <Moon className="mr-2 h-4 w-4" />
-          Dark
+          <Moon className="me-2 h-4 w-4" />
+          {t.theme.dark}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
-          <Monitor className="mr-2 h-4 w-4" />
-          System
+          <Monitor className="me-2 h-4 w-4" />
+          {t.theme.system}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -40,6 +40,7 @@ export function Header({ locale }: HeaderProps) {
   const wishlistCount = useWishlistStore((s) => s.items.length);
   const { isAuthenticated, user, logout } = useAuthStore();
   const t = getTranslation(locale);
+  const isRtl = locale === "fa";
 
   const navLinks = [
     { href: `/${locale}/products`, label: t.common.products },
@@ -65,7 +66,7 @@ export function Header({ locale }: HeaderProps) {
             <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
               <Smartphone className="h-4 w-4 text-white" />
             </div>
-            <span className="gradient-text hidden sm:inline">PhonyShop</span>
+            <span className="gradient-text hidden sm:inline">{t.common.siteName}</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
@@ -87,10 +88,10 @@ export function Header({ locale }: HeaderProps) {
               searchOpen && "flex"
             )}
           >
-            <Search className="absolute left-3 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute start-3 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder={t.common.searchPlaceholder}
-              className="pl-10 rounded-full bg-muted/50"
+              className="ps-10 rounded-full bg-muted/50"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -106,14 +107,14 @@ export function Header({ locale }: HeaderProps) {
               <Search className="h-5 w-5" />
             </Button>
 
-            <ThemeToggle />
+            <ThemeToggle locale={locale} />
             <LocaleSwitcher currentLocale={locale} />
 
             <Link href={`/${locale}/wishlist`}>
               <Button variant="ghost" size="icon" className="rounded-full relative">
                 <Heart className="h-5 w-5" />
                 {wishlistCount > 0 && (
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-[10px]">
+                  <Badge className="absolute -top-1 -end-1 h-5 w-5 p-0 flex items-center justify-center text-[10px]">
                     {wishlistCount}
                   </Badge>
                 )}
@@ -124,7 +125,7 @@ export function Header({ locale }: HeaderProps) {
               <Button variant="ghost" size="icon" className="rounded-full relative">
                 <ShoppingCart className="h-5 w-5" />
                 {cartCount > 0 && (
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-[10px]">
+                  <Badge className="absolute -top-1 -end-1 h-5 w-5 p-0 flex items-center justify-center text-[10px]">
                     {cartCount}
                   </Badge>
                 )}
@@ -151,9 +152,9 @@ export function Header({ locale }: HeaderProps) {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right">
+              <SheetContent side={isRtl ? "left" : "right"}>
                 <SheetHeader>
-                  <SheetTitle>PhonyShop</SheetTitle>
+                  <SheetTitle>{t.common.siteName}</SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col gap-4 mt-8">
                   {navLinks.map((link) => (
@@ -192,10 +193,10 @@ export function Header({ locale }: HeaderProps) {
 
         {searchOpen && (
           <form onSubmit={handleSearch} className="lg:hidden pb-3 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder={t.common.searchPlaceholder}
-              className="pl-10 rounded-full"
+              className="ps-10 rounded-full"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               autoFocus
