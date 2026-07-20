@@ -1,0 +1,35 @@
+{
+  "model": "Holt-Winters (additive trend + seasonality)",
+  "reason": "سری فروش ماهانه دارای روند رشد و الگوی فصلی سالانه است؛ Holt-Winters برای داده‌های خرده‌فروشی با فصلی‌بودن ۱۲ماهه مناسب و قابل تفسیر است.",
+  "horizon_months": 6,
+  "in_sample_mape_pct": 6.66,
+  "forecast": [
+    {
+      "YearMonth": "1405-07",
+      "ForecastSales": 742594428.5545448
+    },
+    {
+      "YearMonth": "1405-08",
+      "ForecastSales": 710134598.3685901
+    },
+    {
+      "YearMonth": "1405-09",
+      "ForecastSales": 722234505.2644377
+    },
+    {
+      "YearMonth": "1405-10",
+      "ForecastSales": 749817321.8613994
+    },
+    {
+      "YearMonth": "1405-11",
+      "ForecastSales": 747819320.1972842
+    },
+    {
+      "YearMonth": "1405-12",
+      "ForecastSales": 789004992.7232937
+    }
+  ],
+  "last_actual_month": "1405-06",
+  "last_actual_sales": 690868565.0,
+  "forecast_sum": 4461605166.96955
+}

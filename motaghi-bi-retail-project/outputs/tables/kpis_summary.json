@@ -1,0 +1,116 @@
+{
+  "sales": {
+    "total_sales": 35660850124.0,
+    "invoice_count": 15312,
+    "avg_invoice_amount": 2328947.8921107627,
+    "avg_items_per_invoice": 3.490073145245559,
+    "total_discount": 699828879.0
+  },
+  "customer": {
+    "active_customers": 2195,
+    "avg_spend_per_customer": 16246400.967653759,
+    "avg_purchases_per_customer": 6.975854214123006,
+    "avg_clv": 24369601.45148064,
+    "median_clv": 23450128.5
+  },
+  "yearly": [
+    {
+      "Year": 1400,
+      "Sales": 4803964908.0,
+      "YoY_Growth": NaN
+    },
+    {
+      "Year": 1401,
+      "Sales": 5347698736.0,
+      "YoY_Growth": 0.1131843879822112
+    },
+    {
+      "Year": 1402,
+      "Sales": 6061840866.0,
+      "YoY_Growth": 0.13354195239019173
+    },
+    {
+      "Year": 1403,
+      "Sales": 7092619046.0,
+      "YoY_Growth": 0.17004375449403297
+    },
+    {
+      "Year": 1404,
+      "Sales": 8041901946.0,
+      "YoY_Growth": 0.1338409540739911
+    },
+    {
+      "Year": 1405,
+      "Sales": 4312824622.0,
+      "YoY_Growth": -0.46370589308849053
+    }
+  ],
+  "top_branches": [
+    {
+      "BranchID": "B99",
+      "Sales": 13438996002.0,
+      "InvoiceCount": 5758,
+      "AvgInvoice": 2333969.4341785344,
+      "BranchName": "انبار مرکزی آنلاین",
+      "City": "تهران"
+    },
+    {
+      "BranchID": "B02",
+      "Sales": 2826280755.0,
+      "InvoiceCount": 1185,
+      "AvgInvoice": 2385047.0506329113,
+      "BranchName": "شعبه اصفهان",
+      "City": "اصفهان"
+    },
+    {
+      "BranchID": "B03",
+      "Sales": 2814303665.0,
+      "InvoiceCount": 1210,
+      "AvgInvoice": 2325870.7975206613,
+      "BranchName": "شعبه شیراز",
+      "City": "شیراز"
+    },
+    {
+      "BranchID": "B07",
+      "Sales": 2813032198.0,
+      "InvoiceCount": 1217,
+      "AvgInvoice": 2311447.9852095316,
+      "BranchName": "شعبه کرج",
+      "City": "کرج"
+    },
+    {
+      "BranchID": "B05",
+      "Sales": 2805714957.0,
+      "InvoiceCount": 1207,
+      "AvgInvoice": 2324536.004142502,
+      "BranchName": "شعبه تبریز",
+      "City": "تبریز"
+    }
+  ],
+  "bottom_branches": [
+    {
+      "BranchID": "B01",
+      "Sales": 2761486151.0,
+      "InvoiceCount": 1203,
+      "AvgInvoice": 2295499.7098919367,
+      "BranchName": "شعبه تهران",
+      "City": "تهران"
+    },
+    {
+      "BranchID": "B04",
+      "Sales": 2725498469.0,
+      "InvoiceCount": 1156,
+      "AvgInvoice": 2357697.6375432527,
+      "BranchName": "شعبه مشهد",
+      "City": "مشهد"
+    },
+    {
+      "BranchID": "B08",
+      "Sales": 2677664895.0,
+      "InvoiceCount": 1160,
+      "AvgInvoice": 2308331.8060344825,
+      "BranchName": "شعبه قم",
+      "City": "قم"
+    }
+  ]
+}
